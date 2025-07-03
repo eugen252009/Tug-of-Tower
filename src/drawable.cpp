@@ -10,7 +10,7 @@ bool BaseEntity<T>::readyForNextFrame(float interval)
     float &lastTime = timers[interval];
     if ((currentTime - lastTime) >= interval)
     {
-        this->lastTime = currentTime;
+        lastTime = currentTime;
         return true;
     }
     return false;
@@ -55,7 +55,7 @@ bool BaseEntity<T>::Dmg(float dmg)
 {
     if (this->readyForNextFrame(0.6f))
     {
-        this->health -= this->dmg;
+        this->health -= dmg;
         if (this->health < 1)
         {
             this->isDead = true;

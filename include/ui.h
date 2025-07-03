@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "Drawable.h"
+#include "Player.h"
 
 struct UI : public BaseEntity<UIState>
 {
@@ -14,7 +15,7 @@ public:
     ~UI() = default;
     void draw();
     void render();
-    void render(Player *player);
+    void render(Player *);
     void move();
     void drawSlot(float, int);
 };
