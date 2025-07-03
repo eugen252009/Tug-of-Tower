@@ -1,0 +1,5 @@
+main.exe
+assets\images\Tiny Swords (Free Pack)\**
+.vscode/*
+.git.bak
+git.bak
