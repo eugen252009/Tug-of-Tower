@@ -14,7 +14,6 @@ Handler::~Handler()
     delete player;
     delete background;
     delete ui;
-    // delete player2;
 }
 
 void Handler::addPlayer(Player *p)
@@ -31,6 +30,9 @@ void Handler::draw()
     }
     player->draw();
     ui->draw();
+    char buf[30];
+    snprintf(buf, sizeof(buf), "%lld", entities.size());
+    DrawText(buf, 30, 60, 24, RED);
 };
 
 void Handler::render()
@@ -65,13 +67,20 @@ void Handler::render()
             }
             if (CheckCollisionRecs(e->getPos(), f->getPos()))
             {
-                // m.setState();
-                // m2.setState();
-                m->print("1");
-                m2->print("2");
 
-                e->Dmg(f->attackPoints);
-                f->Dmg(e->attackPoints);
+                // e->stopMoving();
+                // f->stopMoving();
+                e->setState(MobState::Fighting);
+                f->setState(MobState::Fighting);
+
+                if (e->Dmg(f->attackPoints))
+                {
+                    f->setState(MobState::Walking);
+                };
+                if (f->Dmg(e->attackPoints))
+                {
+                    e->setState(MobState::Walking);
+                };
             };
         }
     }

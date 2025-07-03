@@ -51,13 +51,17 @@ Rectangle BaseEntity<T>::getPos()
 };
 
 template <typename T>
-void BaseEntity<T>::Dmg(float dmg)
+bool BaseEntity<T>::Dmg(float dmg)
 {
-    health -= dmg;
-    if (health < 1)
+    if (readyForNextFrame(0.6f))
     {
-        isDead = true;
+        health -= dmg;
+        if (health < 1)
+        {
+            isDead = true;
+        }
     }
+    return isDead;
 };
 
 template <typename T>
@@ -74,6 +78,14 @@ void BaseEntity<T>::render()
         animate();
     }
 };
+
+template <typename T>
+void BaseEntity<T>::setState(T state)
+{
+    this->state = state;
+    this->texture = *SpriteManager<T>::getSprite(this->entityType, this->state);
+};
+
 template <typename T>
 void BaseEntity<T>::animate() {};
 
@@ -101,8 +113,14 @@ template Rectangle BaseEntity<MobState>::getPos();
 template Rectangle BaseEntity<TowerState>::getPos();
 template Rectangle BaseEntity<UIState>::getPos();
 
-template void BaseEntity<PlayerState>::Dmg(float);
-template void BaseEntity<MapState>::Dmg(float);
-template void BaseEntity<MobState>::Dmg(float);
-template void BaseEntity<TowerState>::Dmg(float);
-template void BaseEntity<UIState>::Dmg(float);
+template bool BaseEntity<PlayerState>::Dmg(float);
+template bool BaseEntity<MapState>::Dmg(float);
+template bool BaseEntity<MobState>::Dmg(float);
+template bool BaseEntity<TowerState>::Dmg(float);
+template bool BaseEntity<UIState>::Dmg(float);
+
+template void BaseEntity<PlayerState>::setState(PlayerState);
+template void BaseEntity<MapState>::setState(MapState);
+template void BaseEntity<MobState>::setState(MobState);
+template void BaseEntity<TowerState>::setState(TowerState);
+template void BaseEntity<UIState>::setState(UIState);

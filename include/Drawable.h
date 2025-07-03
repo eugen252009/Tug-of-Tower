@@ -9,15 +9,17 @@
 template <typename T>
 struct BaseEntity
 {
-    // typename StateTraits<T>::Type state;
     float health = 100;
     float attackPoints = 10;
+    T state;
+    SpriteEntity entityType;
 
     std::unordered_map<float, float> timers;
     Rectangle position = {0, 0, 0, 0};
     Vector2 speed = {0, 0};
 
     Sprites texture;
+    Playernum side = Playernum::PLAYER1;
     float frame;
     bool isDead = false;
 
@@ -25,9 +27,12 @@ struct BaseEntity
     virtual void draw();
     virtual void render();
     bool readyForNextFrame(float);
-    virtual ~BaseEntity() = default;
     void animate();
 
-    void Dmg(float);
+    bool Dmg(float);
+
+    void setState(T);
     Rectangle getPos();
+
+    virtual ~BaseEntity() = default;
 };

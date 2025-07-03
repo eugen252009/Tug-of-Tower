@@ -72,6 +72,11 @@ void LoadMob(std::unordered_map<SpriteEntity, std::unordered_map<MobState, Sprit
         .rect = Rectangle{58, 48, 192, 192},
         .animwidth = 5,
     };
+    (*self)[SpriteEntity::Team1_Warrior][MobState::Fighting] = new Sprites{
+        .sprite = LoadTexture("assets\\images\\Tiny Swords (Free Pack)\\Units\\Blue Units\\Warrior\\Warrior_Attack1.png"),
+        .rect = Rectangle{58, 48, 192, 192},
+        .animwidth = 5,
+    };
     (*self)[SpriteEntity::Team2_Warrior][MobState::Idle] = new Sprites{
         .sprite = LoadTexture("assets\\images\\Tiny Swords (Free Pack)\\Units\\Red Units\\Warrior\\Warrior_Idle.png"),
         .rect = Rectangle{0, 0, 192, 192},
@@ -79,6 +84,11 @@ void LoadMob(std::unordered_map<SpriteEntity, std::unordered_map<MobState, Sprit
     };
     (*self)[SpriteEntity::Team2_Warrior][MobState::Walking] = new Sprites{
         .sprite = LoadTexture("assets\\images\\Tiny Swords (Free Pack)\\Units\\Red Units\\Warrior\\Warrior_Run.png"),
+        .rect = Rectangle{0, 0, 192, 192},
+        .animwidth = 5,
+    };
+    (*self)[SpriteEntity::Team2_Warrior][MobState::Fighting] = new Sprites{
+        .sprite = LoadTexture("assets\\images\\Tiny Swords (Free Pack)\\Units\\Red Units\\Warrior\\Warrior_Attack1.png"),
         .rect = Rectangle{0, 0, 192, 192},
         .animwidth = 5,
     };

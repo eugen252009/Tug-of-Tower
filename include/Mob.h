@@ -5,7 +5,6 @@
 
 struct Mob : BaseEntity<MobState>
 {
-    Playernum side;
     Mob(Playernum);
     virtual ~Mob() = default;
 
@@ -14,9 +13,6 @@ struct Mob : BaseEntity<MobState>
     void move();
     void move(float dx, float dy);
     void animate();
-
-    void setIdle();
-    void setWalking();
 
     Rectangle getRec();
     void print(const char *msg);
