@@ -123,9 +123,6 @@ void SpriteManager<T>::init()
     }
 };
 
-// template <typename T>
-// std::unordered_map<SpriteEntity, std::unordered_map<T, Sprites *>> SpriteManager<T>::spriteMap;
-
 template <typename T>
 Sprites *SpriteManager<T>::getSprite(SpriteEntity entitiy, T state)
 {

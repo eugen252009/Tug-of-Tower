@@ -30,7 +30,7 @@ Mob::Mob(Playernum num)
         };
     }
 
-    texture = *SpriteManager<MobState>::getSprite(this->entityType, MobState::Idle);
+    this->texture = *SpriteManager<MobState>::getSprite(this->entityType, MobState::Idle);
     setState(MobState::Walking);
 };
 
@@ -62,51 +62,51 @@ void Mob::move()
     if (state != MobState::Walking)
         return;
 
-    position.x += speed.x;
-    position.y += speed.y;
+    this->position.x += this->speed.x;
+    this->position.y += this->speed.y;
 
     if (position.x > GetScreenWidth() - position.width)
     {
-        isDead = true;
-        position.x = GetScreenWidth() - position.width;
+        this->isDead = true;
+        this->position.x = GetScreenWidth() - this->position.width;
     };
     if (position.x < 0)
     {
-        isDead = true;
-        position.x = 0;
+        this->isDead = true;
+        this->position.x = 0;
     };
     if (position.y > GetScreenHeight() - position.height)
     {
-        isDead = true;
-        position.y = GetScreenHeight() - position.height;
+        this->isDead = true;
+        this->position.y = GetScreenHeight() - position.height;
     };
     if (position.y < 0)
     {
-        isDead = true;
-        position.y = 0;
+        this->isDead = true;
+        this->position.y = 0;
     };
 };
 
 void Mob::move(float dx, float dy)
 {
-    speed.x = dx;
-    speed.y = dy;
-    setState(MobState::Walking);
-    move();
+    this->speed.x = dx;
+    this->speed.y = dy;
+    this->setState(MobState::Walking);
+    this->move();
 };
 void Mob::animate()
 {
-    frame++;
-    frame = (int)frame % (int)texture.animwidth;
+    this->frame++;
+    this->frame = (int)this->frame % (int)this->texture.animwidth;
 };
 
 void Mob::print(const char *msg)
 {
     printf("------------ %s ------------\n", msg);
-    printf("x: %.0f\n", position.x);
-    printf("y: %.0f\n", position.y);
-    printf("width: %.0f\n", position.width);
-    printf("height: %.0f\n", position.height);
-    printf("sprite id: %d\n", texture.sprite.id);
+    printf("x: %.0f\n", this->position.x);
+    printf("y: %.0f\n", this->position.y);
+    printf("width: %.0f\n", this->position.width);
+    printf("height: %.0f\n", this->position.height);
+    printf("sprite id: %d\n", this->texture.sprite.id);
     printf("------------ /%s ------------\n\n", msg);
 };

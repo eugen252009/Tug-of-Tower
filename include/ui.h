@@ -14,6 +14,7 @@ public:
     ~UI() = default;
     void draw();
     void render();
+    void render(Player *player);
     void move();
     void drawSlot(float, int);
 };

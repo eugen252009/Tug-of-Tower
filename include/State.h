@@ -25,30 +25,6 @@ enum class MapState
     Idle,
 };
 
-template <typename Tag>
-struct StateTraits;
-
-template <>
-struct StateTraits<PlayerState>
-{
-    using Type = PlayerState;
-    using Specific = PlayerState;
-};
-
-template <>
-struct StateTraits<UIState>
-{
-    using Type = UIState;
-    using Base = UIState;
-};
-
-template <>
-struct StateTraits<MobState>
-{
-    using Type = MobState;
-    using Specific = MobState;
-};
-
 enum class Entities
 {
     Player,
@@ -56,16 +32,6 @@ enum class Entities
     Ui,
     Background,
 };
-
-// enum class State
-// {
-// Idle,
-// Walking,
-// Attacking,
-// Defending,
-
-// SLOT,
-// };
 
 enum class SpriteEntity
 {
@@ -84,13 +50,4 @@ enum class Playernum
 {
     PLAYER1,
     PLAYER2,
-};
-
-struct EnumClassHash
-{
-    template <typename T>
-    std::size_t operator()(T t) const
-    {
-        return static_cast<std::size_t>(t);
-    }
 };

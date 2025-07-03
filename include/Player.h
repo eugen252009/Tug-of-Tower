@@ -17,9 +17,6 @@ struct Player : public BaseEntity<PlayerState>
     void render();
     void animate();
 
-    void setIdle();
-    void setWalking();
-
     float getAttackPoints();
     void getDmg(float);
 };

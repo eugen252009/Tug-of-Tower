@@ -11,25 +11,25 @@ Handler::~Handler()
     {
         delete d;
     }
-    delete player;
-    delete background;
-    delete ui;
+    delete this->player;
+    delete this->background;
+    delete this->ui;
 }
 
 void Handler::addPlayer(Player *p)
 {
-    player = p;
+    this->player = p;
 }
 
 void Handler::draw()
 {
-    background->draw();
+    this->background->draw();
     for (BaseEntity<MobState> *e : entities)
     {
         e->draw();
     }
-    player->draw();
-    ui->draw();
+    this->player->draw();
+    this->ui->draw();
     char buf[30];
     snprintf(buf, sizeof(buf), "%lld", entities.size());
     DrawText(buf, 30, 60, 24, RED);
@@ -41,14 +41,14 @@ void Handler::render()
     {
         p->render();
     }
-    player->render();
-    for (BaseEntity<MobState> *f : entities)
+    this->player->render();
+    for (BaseEntity<MobState> *f : this->entities)
     {
         if (!dynamic_cast<Mob *>(f))
         {
             continue;
         }
-        for (BaseEntity<MobState> *e : entities)
+        for (BaseEntity<MobState> *e : this->entities)
         {
             if (!dynamic_cast<Mob *>(e))
             {
@@ -85,33 +85,33 @@ void Handler::render()
         }
     }
 
-    for (BaseEntity<MobState> *e : entities)
+    for (BaseEntity<MobState> *e : this->entities)
     {
         e->render();
     }
-    ui->render();
+    this->ui->render();
     if (IsKeyPressed(KEY_SPACE))
     {
         addMob();
     }
-    entities.erase(std::remove_if(entities.begin(), entities.end(), [](BaseEntity<MobState> *e)
-                                  {
+    this->entities.erase(std::remove_if(entities.begin(), entities.end(), [](BaseEntity<MobState> *e)
+                                        {
     if (e->isDead) {
         delete e;
         return true;
     }
     return false; }),
-                   entities.end());
+                         entities.end());
 };
 
 void Handler::addEntity(BaseEntity<MobState> *entity)
 {
-    entities.push_back(entity);
+    this->entities.push_back(entity);
 }
 
 void Handler::setBackground(Background *bg)
 {
-    background = bg;
+    this->background = bg;
 };
 
 void Handler::addUI(UI *ui)

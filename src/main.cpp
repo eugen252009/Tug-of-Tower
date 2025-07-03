@@ -20,7 +20,7 @@ int main()
     InitWindow(WIDTH, HEIGHT, NULL);
     SetTargetFPS(144);
     // ToggleBorderlessWindowed();
-    
+
     SpriteManager<MapState>::init();
     SpriteManager<PlayerState>::init();
     SpriteManager<TowerState>::init();

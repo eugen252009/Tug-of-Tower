@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "ui.h"
 #include "spritemanager.h"
+#include "Player.h"
 
 #define SLOTS 6
 #define SLOTHEIGHT 64
@@ -9,15 +10,15 @@
 
 UI::UI()
 {
-    texture = *SpriteManager<UIState>::getSprite(SpriteEntity::UI, UIState::Slot);
-    SELECTED = Rectangle{448, 128, 32, 32};
-    SLOT = Rectangle{320, 128, 32, 32};
-    SELECTEDSLOT = 0;
+    this->texture = *SpriteManager<UIState>::getSprite(SpriteEntity::UI, UIState::Slot);
+    this->SELECTED = Rectangle{448, 128, 32, 32};
+    this->SLOT = Rectangle{320, 128, 32, 32};
+    this->SELECTEDSLOT = 0;
 }
 
 void UI::drawSlot(float begin, int n)
 {
-    if (n == SELECTEDSLOT)
+    if (n == this->SELECTEDSLOT)
     {
         DrawTexturePro(texture.sprite, SELECTED, {begin + ((SLOTWIDTH + SLOTGAP) * n), (float)GetScreenHeight() - SLOTHEIGHT - 10, SLOTWIDTH, SLOTHEIGHT}, {0, 0}, 0.0f, WHITE);
     }
@@ -40,21 +41,22 @@ void UI::render()
 {
     if (GetMouseWheelMove() > 0)
     {
-        SELECTEDSLOT += 1;
-        SELECTEDSLOT %= SLOTS;
+        this->SELECTEDSLOT += 1;
+        this->SELECTEDSLOT %= SLOTS;
     }
     else if (GetMouseWheelMove() < 0)
     {
         if (SELECTEDSLOT == 0)
         {
-            SELECTEDSLOT = SLOTS - 1;
+            this->SELECTEDSLOT = SLOTS - 1;
         }
         else
         {
-            SELECTEDSLOT -= 1;
-            SELECTEDSLOT %= SLOTS;
+            this->SELECTEDSLOT -= 1;
+            this->SELECTEDSLOT %= SLOTS;
         }
     }
 }
 
+void UI::render(Player *player) {};
 void UI::move() {};

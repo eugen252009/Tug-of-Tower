@@ -10,7 +10,7 @@ bool BaseEntity<T>::readyForNextFrame(float interval)
     float &lastTime = timers[interval];
     if ((currentTime - lastTime) >= interval)
     {
-        lastTime = currentTime;
+        this->lastTime = currentTime;
         return true;
     }
     return false;
@@ -18,50 +18,50 @@ bool BaseEntity<T>::readyForNextFrame(float interval)
 template <typename T>
 void BaseEntity<T>::move()
 {
-    position.x += speed.x;
-    position.y += speed.y;
+    this->position.x += this->speed.x;
+    this->position.y += this->speed.y;
 
-    speed.x *= 0.9f;
-    speed.y *= 0.9f;
-    if (position.x > GetScreenWidth() - position.width)
+    this->speed.x *= 0.9f;
+    this->speed.y *= 0.9f;
+    if (this->position.x > GetScreenWidth() - this->position.width)
     {
-        position.x = GetScreenWidth() - position.width;
+        this->position.x = GetScreenWidth() - this->position.width;
     };
-    if (position.x < 0)
+    if (this->position.x < 0)
     {
-        position.x = 0;
+        this->position.x = 0;
     };
-    if (position.y > GetScreenHeight() - position.height)
+    if (this->position.y > GetScreenHeight() - this->position.height)
     {
-        position.y = GetScreenHeight() - position.height;
+        this->position.y = GetScreenHeight() - this->position.height;
     };
-    if (position.y < 0)
+    if (this->position.y < 0)
     {
-        position.y = 0;
+        this->position.y = 0;
     };
-    if (speed.x < 0.1f && speed.x > -0.1f)
-        speed.x = 0;
-    if (speed.y < 0.1 && speed.y > -0.1f)
-        speed.y = 0;
+    if (this->speed.x < 0.1f && this->speed.x > -0.1f)
+        this->speed.x = 0;
+    if (this->speed.y < 0.1 && this->speed.y > -0.1f)
+        this->speed.y = 0;
 }
 template <typename T>
 Rectangle BaseEntity<T>::getPos()
 {
-    return position;
+    return this->position;
 };
 
 template <typename T>
 bool BaseEntity<T>::Dmg(float dmg)
 {
-    if (readyForNextFrame(0.6f))
+    if (this->readyForNextFrame(0.6f))
     {
-        health -= dmg;
-        if (health < 1)
+        this->health -= this->dmg;
+        if (this->health < 1)
         {
-            isDead = true;
+            this->isDead = true;
         }
     }
-    return isDead;
+    return this->isDead;
 };
 
 template <typename T>
@@ -73,9 +73,9 @@ void BaseEntity<T>::draw()
 template <typename T>
 void BaseEntity<T>::render()
 {
-    if (readyForNextFrame(0.1))
+    if (this->readyForNextFrame(0.1))
     {
-        animate();
+        this->animate();
     }
 };
 
