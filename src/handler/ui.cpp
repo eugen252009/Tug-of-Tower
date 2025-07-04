@@ -4,8 +4,8 @@
 #include "Player.h"
 
 #define SLOTS 6
-#define SLOTHEIGHT 64
-#define SLOTWIDTH 64
+#define SLOTHEIGHT 128
+#define SLOTWIDTH 128
 #define SLOTGAP 2
 
 UI::UI()

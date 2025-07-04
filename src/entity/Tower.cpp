@@ -11,7 +11,6 @@ Tower::Tower(Playernum num, float x, float y)
     {
     case Playernum::PLAYER1:
     {
-
         texture = *SpriteManager<TowerState>::getSprite(SpriteEntity::Tower, TowerState::Idle);
     }
     break;

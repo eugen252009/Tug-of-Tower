@@ -51,13 +51,9 @@ void Handler::render()
         for (BaseEntity<MobState> *e : this->entities)
         {
             if (!dynamic_cast<Mob *>(e))
-            {
                 continue;
-            }
             if (e == f)
-            {
                 continue;
-            }
 
             Mob *m = dynamic_cast<Mob *>(e);
             Mob *m2 = dynamic_cast<Mob *>(f);
@@ -67,12 +63,8 @@ void Handler::render()
             }
             if (CheckCollisionRecs(e->getPos(), f->getPos()))
             {
-
-                // e->stopMoving();
-                // f->stopMoving();
                 e->setState(MobState::Fighting);
                 f->setState(MobState::Fighting);
-
                 if (e->Dmg(f->attackPoints))
                 {
                     f->setState(MobState::Walking);
@@ -92,7 +84,7 @@ void Handler::render()
     this->ui->render();
     if (IsKeyPressed(KEY_SPACE))
     {
-        addMob();
+        this->addMob();
     }
     this->entities.erase(std::remove_if(entities.begin(), entities.end(), [](BaseEntity<MobState> *e)
                                         {

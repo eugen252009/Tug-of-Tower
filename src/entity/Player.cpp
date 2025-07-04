@@ -56,7 +56,6 @@ float Player::getAttackPoints()
 };
 
 void Player::getDmg(float dmg) {
-    // BaseEntity::Dmg(dmg);
 };
 
 void Player::animate()

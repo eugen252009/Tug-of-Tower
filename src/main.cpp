@@ -12,6 +12,7 @@
 
 void sendMessage(const char *msg)
 {
+    
     DrawText(msg, 30, 30, 24, RED);
 }
 
@@ -19,7 +20,7 @@ int main()
 {
     InitWindow(WIDTH, HEIGHT, NULL);
     SetTargetFPS(144);
-    // ToggleBorderlessWindowed();
+    ToggleBorderlessWindowed();
 
     SpriteManager<MapState>::init();
     SpriteManager<PlayerState>::init();

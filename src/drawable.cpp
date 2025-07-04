@@ -15,6 +15,7 @@ bool BaseEntity<T>::readyForNextFrame(float interval)
     }
     return false;
 }
+
 template <typename T>
 void BaseEntity<T>::move()
 {
